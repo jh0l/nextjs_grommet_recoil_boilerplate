@@ -1,2 +1,2 @@
-# Stream Braindance Studio
-watch content from multiple perspectives seamlessly (blazing fast!!1)
+# Boilerplate for a Nextjs based react app
+with grommet for css and recoil for suspenseful state management
