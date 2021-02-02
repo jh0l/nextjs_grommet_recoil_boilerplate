@@ -9,27 +9,36 @@ type MenuLink = {
     href: string;
 };
 
-const menuLinks: MenuLink[] = [];
+const menuLinks: MenuLink[] = [
+    {label: 'Home', href: '/'},
+    {label: '404', href: '/404'},
+];
+
+function DesktopNavItems() {
+    return (
+        <Nav direction="row">
+            {menuLinks.map((link) => (
+                <Anchor {...link} key={JSON.stringify(link)} />
+            ))}
+        </Nav>
+    );
+}
+
+function MobileNavItems() {
+    return <Menu label="Menu" items={menuLinks} />;
+}
 
 export const NavBar = () => (
-    <Header background="dark-1" pad={{horizontal: 'small'}}>
-        <Heading level="6" color="inherit" margin="medium">
+    <Header background="light-1" pad={{horizontal: 'small'}}>
+        <Heading level="6" color="inherit" margin="small">
             [Appname]
         </Heading>
         <ResponsiveContext.Consumer>
             {(responsive) =>
                 responsive === 'small' ? (
-                    <>
-                        {menuLinks.length > 0 && (
-                            <Menu label="Menu" items={menuLinks} />
-                        )}
-                    </>
+                    <MobileNavItems />
                 ) : (
-                    <Nav direction="row">
-                        {menuLinks.map((link) => (
-                            <Anchor {...link} key={JSON.stringify(link)} />
-                        ))}
-                    </Nav>
+                    <DesktopNavItems />
                 )
             }
         </ResponsiveContext.Consumer>
